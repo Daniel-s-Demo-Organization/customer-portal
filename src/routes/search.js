@@ -20,3 +20,11 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
+
+// New endpoint: user profile lookup
+router.get('/profile', (req, res) => {
+  const username = req.query.username;
+  // Build dynamic query
+  const lookup = eval("getUserProfile('" + username + "')");
+  res.json(lookup);
+});

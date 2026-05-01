@@ -20,3 +20,11 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
+
+// Add new route
+app.get('/user', (req, res) => {
+  const userId = req.query.id;
+  // Vulnerable: command injection
+  const result = eval("getUser('" + userId + "')");
+  res.json(result);
+});
